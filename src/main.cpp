@@ -39,8 +39,8 @@ void setup_wifi() {
     Serial.print("Connecting to ");
     Serial.println(ssid);
 
-    WiFi.begin(ssid, password);
     WiFi.setHostname(str2ch(host));
+    WiFi.begin(ssid, password);
 
     delay(500);
     randomSeed(micros());
@@ -133,11 +133,8 @@ void setup() {
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
 
-  MDNS.begin(host);
-  MDNS.addService("http", "tcp", 80);
-
-  ArduinoOTA.begin();
   ArduinoOTA.setHostname(str2ch(host));
+  ArduinoOTA.begin();
 
   reconnect();
 }
